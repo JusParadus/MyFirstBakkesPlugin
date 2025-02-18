@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyFirstBakkesPlugin", "MyFirstBakkesPlugin\MyFirstBakkesPlugin.vcxproj", "{4804A9DA-D25E-4169-83DC-20091D1CC289}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4804A9DA-D25E-4169-83DC-20091D1CC289}.Release|x64.ActiveCfg = Release|x64
+		{4804A9DA-D25E-4169-83DC-20091D1CC289}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5FC494EF-DF9F-4144-A0BC-157365F465C3}
+	EndGlobalSection
+EndGlobal
