@@ -51,5 +51,5 @@ void MyFirstBakkesPlugin::ballOnTop() {
 	ball.SetVelocity(carVelocity);
 	Vector carLocation = car.GetLocation();
 	float ballRadius = ball.GetRadius();
-	ball.SetLocation(carLocation + Vector(0, 0, ballRadius * 1.6));
+	ball.SetLocation(carLocation + Vector(0, 0, distance));
 }
