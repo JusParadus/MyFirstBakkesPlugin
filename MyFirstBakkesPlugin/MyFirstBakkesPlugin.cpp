@@ -31,25 +31,24 @@ void MyFirstBakkesPlugin::onUnload() {
 void MyFirstBakkesPlugin::ballOnTop() {
 	// Get the game wrapper and check if we are in freeplay
 	if (!gameWrapper->IsInFreeplay()) { return; }
-	ServerWrapper server = gameWrapper->GetGameEventAsServer();
+	ServerWrapper server = gameWrapper->GetCurrentGameState();
 	if (!server) { return; }
 
-	if(!coolEnabled) { return; }
+	if (!coolEnabled) { return; }
 
 	CVarWrapper distanceCVar = cvarManager->getCvar("cool_distance");
 	if (!distanceCVar) { return; }
 	float distance = distanceCVar.getFloatValue();
 
-	// Get the ball and the car and check if they exist
 	BallWrapper ball = server.GetBall();
 	if (!ball) { return; }
 	CarWrapper car = gameWrapper->GetLocalCar();
 	if (!car) { return; }
 
-	// Set the ball's velocity to the car's velocity and set the ball's location to the car's location plus the ball's radius
 	Vector carVelocity = car.GetVelocity();
 	ball.SetVelocity(carVelocity);
+
 	Vector carLocation = car.GetLocation();
 	float ballRadius = ball.GetRadius();
-	ball.SetLocation(carLocation + Vector(0, 0, distance));
+	ball.SetLocation(carLocation + Vector{ 0, 0, distance });
 }
