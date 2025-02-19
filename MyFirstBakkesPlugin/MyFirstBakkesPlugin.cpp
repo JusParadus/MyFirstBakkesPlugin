@@ -8,8 +8,9 @@ std::shared_ptr<CVarManagerWrapper> _globalCvarManager;
 
 void MyFirstBakkesPlugin::onLoad()
 {
+	// This line is required for LOG to work and must be before any use of LOG()
 	_globalCvarManager = cvarManager;
-	//LOG("Plugin loaded!");
+	LOG("Plugin loaded!");
 	// !! Enable debug logging by setting DEBUG_LOG = true in logging.h !!
 	//DEBUGLOG("MyFirstBakkesPlugin debug mode enabled");
 
