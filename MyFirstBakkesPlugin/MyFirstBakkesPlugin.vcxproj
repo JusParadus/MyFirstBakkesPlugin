@@ -143,6 +143,9 @@
   <ItemGroup>
     <ResourceCompile Include="MyFirstBakkesPlugin.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\Pictures\0_School_Stuff\Its_not_school_stuff\cute_02.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
