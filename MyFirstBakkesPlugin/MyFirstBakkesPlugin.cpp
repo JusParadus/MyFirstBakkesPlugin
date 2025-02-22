@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "MyFirstBakkesPlugin.h"
 
-
 BAKKESMOD_PLUGIN(MyFirstBakkesPlugin, "This is a plugin description!", plugin_version, PLUGINTYPE_FREEPLAY)
 
 std::shared_ptr<CVarManagerWrapper> _globalCvarManager;
@@ -22,6 +21,11 @@ void MyFirstBakkesPlugin::onLoad() {
 			});
 
 	cvarManager->registerCvar("cool_distance", "200.0", "Distance to place the ball above");
+
+	// Register the render function for the ingame overlay
+	gameWrapper->RegisterDrawable([this](CanvasWrapper canvas) {
+		Render(canvas);
+		});
 }
 
 void MyFirstBakkesPlugin::onUnload() {
@@ -51,4 +55,41 @@ void MyFirstBakkesPlugin::ballOnTop() {
 	Vector carLocation = car.GetLocation();
 	float ballRadius = ball.GetRadius();
 	ball.SetLocation(carLocation + Vector{ 0, 0, distance });
+}
+
+// This function is called every tick and is used to render the ingame overlay
+void MyFirstBakkesPlugin::Render(CanvasWrapper canvas) {
+	
+	// defines colors in RGBA 0-255
+	LinearColor colors;
+	colors.R = 255;
+	colors.G = 255;
+	colors.B = 0;
+	colors.A = 255;
+	canvas.SetColor(MyColors::YELLOW);
+
+	// sets position to top left
+	// x moves to the right
+	// y moves down
+	// bottom right would be 1920, 1080 for 1080p monitors
+	canvas.SetPosition(Vector2F{ 100.0, 100.0 });
+	Vector2 canvasSize = canvas.GetSize();
+
+	// says hi
+	// draws from the last set position
+	// the two floats are text x and y scale
+	// the false turns off the drop shadow
+	canvas.DrawString("Screensize: X:" + std::to_string(canvasSize.X) + "; Y:" + std::to_string(canvasSize.Y), 2.0, 2.0, false);
+
+	// make a cross at the ball center location
+	/*if (!coolEnabled) { return; }  
+	ServerWrapper server = gameWrapper->GetCurrentGameState();  
+	if (!server) { return; }  
+	BallWrapper ball = server.GetBall();  
+	if (!ball) { return; }  
+	Vector ballLocation = ball.GetLocation();  
+	Vector2 ballLocation2D = canvas.Project(ballLocation);  
+	canvas.SetColor(255, 0, 0, 255);  
+	canvas.DrawLine(Vector2{ballLocation2D.X - 10, ballLocation2D.Y}, Vector2{ballLocation2D.X + 10, ballLocation2D.Y});  
+	canvas.DrawLine(Vector2{ballLocation2D.X, ballLocation2D.Y - 10}, Vector2{ballLocation2D.X, ballLocation2D.Y + 10});*/
 }
